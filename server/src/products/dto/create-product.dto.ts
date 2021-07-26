@@ -1,6 +1,6 @@
 export class CreateProductDto {
   public readonly name: string;
-  public readonly price: string;
-  public readonly qntd: string;
+  public readonly price: number;
+  public readonly qntd: number;
   public readonly description: string;
 }
