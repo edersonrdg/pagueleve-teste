@@ -19,6 +19,13 @@ export class UsersService {
         error: 'Password must be equal than confirm password'
       })
     }
+
+    const emailUsed = await this.getUserByEmail(email)
+    if (emailUsed) {
+      throw new BadRequestException({
+        error: 'Email already used'
+      })
+    }
     const passwordHash = await bcrypt.hash(password, 10);
     const user = this.usersRepository.create({
       email,
