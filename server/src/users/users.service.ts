@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -13,7 +13,12 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async addUser({ email, name, password }: AddUserDTO): Promise<UserResponse> {
+  async addUser({ email, name, password, confirm_password }: AddUserDTO): Promise<UserResponse> {
+    if (password !== confirm_password) {
+      throw new BadRequestException({
+        error: 'Password must be equal than confirm password'
+      })
+    }
     const passwordHash = await bcrypt.hash(password, 10);
     const user = this.usersRepository.create({
       email,
