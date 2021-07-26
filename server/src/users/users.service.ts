@@ -45,12 +45,4 @@ export class UsersService {
     })
     return user
   }
-  async getUser(username: string): Promise<User> {
-    const user = await this.usersRepository.findOne({
-      where: {
-        name: username
-      }
-    })
-    return user
-  }
 }
