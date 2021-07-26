@@ -30,7 +30,7 @@ export class ProductsService {
     await this.productRepository.update(product.id, updateProductDto)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  async remove(id: number) {
+    await this.productRepository.delete(id);
   }
 }
