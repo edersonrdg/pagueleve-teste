@@ -29,4 +29,13 @@ export class UsersService {
     delete user.password
     return Object.assign({ token: '123'}, user)
   }
+
+  async getUserByEmail(email: string): Promise<User> {
+    const user = await this.usersRepository.findOne({
+      where: {
+        email
+      }
+    })
+    return user
+  }
 }
