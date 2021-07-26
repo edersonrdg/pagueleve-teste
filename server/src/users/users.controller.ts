@@ -1,16 +1,14 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AddUserDTO } from './dtos/addUserDTO';
 import { UserResponse } from './user.interface';
+import { UsersService } from './users.service';
 
 @Controller()
 export class UsersController {
+  constructor(private userService: UsersService) {}
   @Post('/signup')
   async signUp(@Body() data: AddUserDTO): Promise<UserResponse> {
-    return Object.assign({ 
-      token: '123', 
-      id: '123', 
-      name: data.name, 
-      email: data.email
-    })
+    const response = this.userService.addUser(data)
+    return response
   }
 }
