@@ -18,16 +18,16 @@ export class ProductsService {
     return product;
   }
 
-  async findAll() {
+  async findAll(): Promise<Product[]> {
     return await this.productRepository.find();
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
-  }
-
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  
+  async update(id: number, updateProductDto: UpdateProductDto): Promise<void> {
+    const product = await this.productRepository.findOne({ where: { id }})
+    if (!product) {
+      return 
+    }
+    await this.productRepository.update(product.id, updateProductDto)
   }
 
   remove(id: number) {
