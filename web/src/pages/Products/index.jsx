@@ -55,6 +55,10 @@ const useStyles = makeStyles((theme) => ({
 function Products() {
   const history = useHistory()
   const [products, setProducts] = useState([])
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState('')
+  const [qntd, setQntd] = useState('')
+  const [description, setDescription] = useState('')
   const user = JSON.parse(localStorage.getItem('user'))
 
   async function getProducts() {
@@ -90,6 +94,26 @@ function Products() {
     history.push('/')
   }
 
+  async function handleSubmit(event) {
+    event.preventDefault()
+
+    const sendData = {
+      name,
+      description,
+      price,
+      qntd
+    }
+    try {
+      await api.post('/products', sendData, {
+        headers: {'Authorization': 'Bearer '+ user.token}
+      })
+      setProducts([sendData, ...products])
+      handleClose()
+    } catch (error) {
+      alert('Erro de requisição')
+    }
+  }
+
   return (
     <>
       <Sidebar />
@@ -111,12 +135,35 @@ function Products() {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Novo produto</h2>
-            <form className={classes.form}>
-              <input type="text" className={classes.input} name="name" id="name-product" placeholder="Nome"/>
-              <input type="text" className={classes.input} name="description" id="description" placeholder="Descrição"/>
-              <input type="number" className={classes.input} name="price" id="price" placeholder="Preço"/>
-              <input type="number" className={classes.input} name="qntd" id="qntd" placeholder="Quantidade"/>
-              <button type="button" className={classes.button}>Cadastrar</button>
+            <form className={classes.form} onSubmit={handleSubmit}>
+
+              <input type="text" 
+              className={classes.input} 
+              name="name" id="name-product" 
+              placeholder="Nome"
+              onChange={({target}) => setName(target.value)}/>
+
+              <input type="text" 
+              className={classes.input}
+              name="description" 
+              id="description" 
+              placeholder="Descrição"
+              onChange={({target}) => setDescription(target.value)}/>
+
+              <input type="number" 
+              className={classes.input} 
+              name="price" id="price" 
+              placeholder="Preço"
+              onChange={({target}) => setPrice(target.value)}/>
+
+              <input type="number" 
+              className={classes.input} 
+              name="qntd" id="qntd" 
+              placeholder="Quantidade"
+              onChange={({target}) => setQntd(target.value)}/>
+
+              <button type="submit" 
+              className={classes.button}>Cadastrar</button>
             </form>
           </div>
         </Fade> 
@@ -130,8 +177,6 @@ function Products() {
             <th>Descrição</th>
             <th>Preço</th>
             <th>Quantidade</th>
-            <th>Data de criação</th>
-            <th>Ultima edição</th>
           </tr>
           </thead>
           <tbody>
@@ -141,8 +186,6 @@ function Products() {
               <td>{product.description}</td>
               <td>{`${product.price} reais`}</td>
               <td>{product.qntd}</td>
-              <td>{product.createdAt}</td>
-              <td>{product.updatedAt}</td>
               <td><AiFillDelete color="red" fontSize="20px"/></td>
             </tr>
           ))}
