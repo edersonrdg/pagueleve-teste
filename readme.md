@@ -4,7 +4,7 @@ Teste prático com periodo de codificação de 7 horas.
 
 Backend (15:00 horas - 17:00 horas)
 pausa (17:00 horas - 19:00 horas) - Aula curso 
-
+backend (19:00 horas - 21:00 horas)
 
 ## Features
 
