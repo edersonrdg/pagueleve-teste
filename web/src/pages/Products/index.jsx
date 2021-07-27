@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import { AiFillDelete } from 'react-icons/ai'
 import './styles.css'
 
 const useStyles = makeStyles((theme) => ({
@@ -114,7 +115,7 @@ function Products() {
             <td>399</td>
             <td>399</td>
             <td>
-              <button type="button">Excluir</button>
+              <AiFillDelete color="red" fontSize="20px"/>
             </td>
           </tr>
           <tr>
@@ -125,7 +126,7 @@ function Products() {
             <td>399</td>
             <td>399</td>
             <td>
-              <button type="button">Excluir</button>
+              <AiFillDelete color="red" fontSize="20px"/>
             </td>
           </tr>
           </tbody>
