@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     borderRadius: '6px',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    padding: theme.spacing(4, 6.8, 3),
     textAlign: 'center'
   },
   form: {
@@ -30,13 +30,15 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2)
   },
   input: {
-    marginBottom: theme.spacing(1.4)
+    marginBottom: theme.spacing(2.6),
+    padding: theme.spacing(1.2),
   },
   button: {
     backgroundColor: '#2C6271',
     color: '#FFF',
     fontWeight: 'bold',
     padding: theme.spacing(1, 2),
+    marginTop: theme.spacing(2.0),
     border: 'none',
     borderRadius: '6px',
     cursor: 'pointer',
@@ -83,12 +85,14 @@ function Products() {
             <form className={classes.form}>
               <input type="text" className={classes.input} name="name" id="name-product" placeholder="Nome"/>
               <input type="text" className={classes.input} name="description" id="description" placeholder="Descrição"/>
+              <input type="number" className={classes.input} name="price" id="price" placeholder="Preço"/>
+              <input type="number" className={classes.input} name="qntd" id="qntd" placeholder="Quantidade"/>
               <button type="button" className={classes.button}>Cadastrar</button>
             </form>
           </div>
-        </Fade>
+        </Fade> 
       </Modal>
-      </div>
+      </div> 
       <div id="product-content">
         <table id="product-table">
           <thead>
