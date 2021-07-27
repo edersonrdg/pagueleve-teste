@@ -34,7 +34,7 @@ export class UsersService {
     })
     await this.usersRepository.save(user)
     delete user.password
-    return Object.assign({ token: '123'}, user)
+    return user
   }
 
   async getUserByEmail(email: string): Promise<User> {
