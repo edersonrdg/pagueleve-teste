@@ -1,0 +1,45 @@
+aside {
+  height: 100vh;  
+  width: 180px;
+  position: fixed;
+  background-color: #597988;
+}
+
+#title {
+  padding-top: 24px;
+  padding-bottom: 64px;
+  color: #ffffff;
+}
+
+#title h1 {
+  display: block;
+  color: #ffffff;
+  font-size: 24px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+a.nav-button {
+  text-decoration: none;
+}
+
+a.nav-button span {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  width: 100%;
+  padding-top: 22px;
+  padding-left: 24px;
+  padding-bottom: 22px;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  transition-duration: 0.3s; 
+}
+
+a.nav-button span:hover {
+  background-color: #7BA9BE;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
