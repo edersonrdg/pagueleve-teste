@@ -16,7 +16,7 @@ function SignIn() {
         password,
 	      username
       })
-      localStorage.setItem('user', JSON.stringify(response))
+      localStorage.setItem('user', JSON.stringify(response.data))
       history.push('/produtos')
     } catch (error) {
       console.log(error.response)

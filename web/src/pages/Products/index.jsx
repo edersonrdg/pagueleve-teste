@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../../components/Sidebar';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -6,6 +6,8 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { AiFillDelete } from 'react-icons/ai'
 import './styles.css'
+import { Redirect, useHistory } from 'react-router-dom';
+import { api } from '../../service/api';
 
 const useStyles = makeStyles((theme) => ({
   palette: {
@@ -51,6 +53,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Products() {
+  const history = useHistory()
+  const [products, setProducts] = useState([])
+  const user = JSON.parse(localStorage.getItem('user'))
+
+  async function getProducts() {
+    try {
+      const products = await api.get('/products', {
+        headers: {'Authorization': 'Bearer '+ user.token}
+      })
+      setProducts(products.data)
+    } catch (error) {
+      console.log(error)
+      alert('Erro interno de servidor')
+    }
+  }
+
+  useEffect(() => {
+    getProducts()
+  }, [])
+
+  console.log(products)
+
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -61,6 +85,10 @@ function Products() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  if (!user) {
+    history.push('/')
+  }
 
   return (
     <>
@@ -107,28 +135,17 @@ function Products() {
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Banana</td>
-            <td>1 kg</td>
-            <td>50 reais</td>
-            <td>40</td>
-            <td>399</td>
-            <td>399</td>
-            <td>
-              <AiFillDelete color="red" fontSize="20px"/>
-            </td>
-          </tr>
-          <tr>
-            <td>Banana</td>
-            <td>1 kg</td>
-            <td>50 reais</td>
-            <td>40</td>
-            <td>399</td>
-            <td>399</td>
-            <td>
-              <AiFillDelete color="red" fontSize="20px"/>
-            </td>
-          </tr>
+          {products.map((product) => (
+            <tr key={product.id}>
+              <td>{product.name}</td>
+              <td>{product.description}</td>
+              <td>{`${product.price} reais`}</td>
+              <td>{product.qntd}</td>
+              <td>{product.createdAt}</td>
+              <td>{product.updatedAt}</td>
+              <td><AiFillDelete color="red" fontSize="20px"/></td>
+            </tr>
+          ))}
           </tbody>
         </table>
       </div>
