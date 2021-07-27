@@ -7,6 +7,7 @@ Pausa - Aula curso  <br />
 Backend (19:00 horas - 21:00 horas) <br />
 Frontend (21:00 horas - 23:00 horas) <br />
 Pausa - descanço <br />
+Frontend - (00:00 horas - 1:00 hora) <br />
 
 ## Features
 
@@ -20,16 +21,44 @@ Pausa - descanço <br />
 - [TypeORM](https://typeorm.io/)
 - [Postgres](https://www.postgresql.org/)
 - [Express](https://expressjs.com/pt-br/) 
+- [ReactJs](https://pt-br.reactjs.org/)
+- [Typescript](https://www.typescriptlang.org)
 
 ## Installation
 
 ```sh
-
+git clone https://github.com/edersonrdg/pagueleve-teste.git
+cd pagueleve-teste
 ```
+
+Backend
+```sh
+cd server
+npm install
+```
+Frontend
+```sh
+cd web
+npm install
+```
+
 ## Development
 
-```sh
+Backend
 
+Configure as variáveis globais em um arquivo .env seguindo o exemplo do arquivo .env.example
+
+```sh
+cd server
+npm run start:dev
+
+```
+
+Frontend
+
+```sh
+cd web
+npm run start
 ```
 
 ## Autor
