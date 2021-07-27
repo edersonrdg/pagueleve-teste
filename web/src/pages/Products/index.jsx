@@ -77,8 +77,6 @@ function Products() {
     getProducts()
   }, [])
 
-  console.log(products)
-
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -94,6 +92,17 @@ function Products() {
     history.push('/')
   }
 
+  async function handleDeleteProduct(id) {
+    try {
+      await api.delete(`/products/${id}`, {
+        headers: {'Authorization': 'Bearer '+ user.token}
+      })
+      setProducts(products.filter((prod) => prod.id !== id));
+    } catch (error) {
+      alert('Erro de requisição')
+    }
+  }
+
   async function handleSubmit(event) {
     event.preventDefault()
 
@@ -104,10 +113,10 @@ function Products() {
       qntd
     }
     try {
-      await api.post('/products', sendData, {
+      const response = await api.post('/products', sendData, {
         headers: {'Authorization': 'Bearer '+ user.token}
       })
-      setProducts([sendData, ...products])
+      setProducts([response.data, ...products])
       handleClose()
     } catch (error) {
       alert('Erro de requisição')
@@ -186,7 +195,13 @@ function Products() {
               <td>{product.description}</td>
               <td>{`${product.price} reais`}</td>
               <td>{product.qntd}</td>
-              <td><AiFillDelete color="red" fontSize="20px"/></td>
+              <td>
+                <AiFillDelete
+                cursor="pointer" 
+                color="red" 
+                fontSize="20px" 
+                onClick={() => handleDeleteProduct(product.id)}/>
+              </td>
             </tr>
           ))}
           </tbody>
