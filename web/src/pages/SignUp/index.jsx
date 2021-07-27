@@ -18,7 +18,7 @@ function SignUp() {
         password,
         confirm_password
       })
-      history.push('/produtos')
+      history.push('/')
     } catch (error) {
       alert('Erro de requisição, tente novamente')
     }
@@ -39,7 +39,7 @@ function SignUp() {
           <input type="password" placeholder="Confirmação de senha" 
           onChange={({target}) => setConfirm_password(target.value)}/>
         </div>
-        <button type="submit">Entrar</button>
+        <button type="submit">Cadastrar</button>
         <Link to="/">Já possuo uma conta</Link>
       </form>
     </div>
