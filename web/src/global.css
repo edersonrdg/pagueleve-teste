@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+body {
+  height: 100vh;
+  font: 14px Arial, Helvetica, sans-serif;
+}
+
+#main {
+  height: 92vh;
+  display: flex;
+}
