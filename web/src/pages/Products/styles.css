@@ -1,0 +1,52 @@
+.main-content {
+  padding: 80px;
+  flex: 1;
+  margin-left: 180px;
+}
+
+#header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#header h1 {
+  font-size: 32px;
+  font-family: 'Roboto', sans-serif;
+  color: #656565;
+  font-weight: bold;
+}
+
+#header #btn-primary {
+  background-color: #2C6271;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#header #btn-primary:hover {
+  background-color: #3d8ca1;
+  transition-duration: 0.3s; 
+}
+
+#product-content {
+  margin-top: 80px;
+}
+
+#product-content #product-table {
+  border-spacing: 35px;
+  width: 100%;
+}
+
+#product-content #product-table tbody {
+  margin-top: 35px;
+}
+
+#product-content #product-table td {
+  text-align: center;
+  color: #737B7D;
+}
